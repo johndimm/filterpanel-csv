@@ -120,13 +120,13 @@ function MainPage() {
 
 				<h2>Public Data Examples</h2>
 				<div>
-					<a href='http://localhost:3001/FetchCSV?url=https%3A%2F%2Fquery.data.world%2Fs%2Flt76nsufm5v76w2au4mmkksoh6wu6a'>
+					<a href='/FetchCSV?url=https%3A%2F%2Fquery.data.world%2Fs%2Flt76nsufm5v76w2au4mmkksoh6wu6a'>
 						<img src='movies_thumbnail.png' />
 					</a>
 
 					<div>
 						<span className={styles.item_title}>
-							<a href='http://localhost:3001/FetchCSV?url=https%3A%2F%2Fquery.data.world%2Fs%2Flt76nsufm5v76w2au4mmkksoh6wu6a'>
+							<a href='/FetchCSV?url=https%3A%2F%2Fquery.data.world%2Fs%2Flt76nsufm5v76w2au4mmkksoh6wu6a'>
 								Movies
 							</a>
 						</span>
@@ -139,12 +139,12 @@ function MainPage() {
 				</div>
 
 				<div>
-					<a href='http://localhost:3001/FetchCSV?url=https%3A%2F%2Fquery.data.world%2Fs%2F45jwacgkggx55n2p3yox4qyiug7n6l'>
+					<a href='/FetchCSV?url=https%3A%2F%2Fquery.data.world%2Fs%2F45jwacgkggx55n2p3yox4qyiug7n6l'>
 						<img src='olympics_thumbnail.png' />
 					</a>
 					<div>
 						<span className={styles.item_title}>
-							<a href='http://localhost:3001/FetchCSV?url=https%3A%2F%2Fquery.data.world%2Fs%2F45jwacgkggx55n2p3yox4qyiug7n6l'>
+							<a href='/FetchCSV?url=https%3A%2F%2Fquery.data.world%2Fs%2F45jwacgkggx55n2p3yox4qyiug7n6l'>
 								Olympic Medals
 							</a>
 						</span>
