@@ -8,6 +8,7 @@
     "start": "next start -p 3001"
   },
   "dependencies": {
+    "@babel/core": "^7.14.8",
     "csv-string": "^4.0.1",
     "express": "^4.17.1",
     "fast-csv": "^4.3.6",
