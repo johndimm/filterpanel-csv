@@ -1,0 +1,89 @@
+.item_plot {
+	margin-top: 20px;
+	font-size: 10pt;
+	padding: 30px;
+}
+
+.text_card {
+	text-align: center;
+}
+
+.item_title {
+	font-size: 12pt;
+}
+
+.item_cards {
+	width: auto;
+	font-size: 10pt;
+}
+
+
+.item_card {
+	float: left;
+	position: relative;
+	margin: 2px;
+	padding: 2px;
+	background-color: lightgray;
+	text-align: left;
+	height: calc(var(--factor) * 300px);
+	max-width: calc(var(--factor) * 220px);
+	overflow: hidden;
+	cursor: pointer;
+	font-size: 8pt;
+}
+
+.item_card img {
+	max-height: 100%;
+	max-width: calc(var(--factor) * 200px);
+	margin: auto;
+	overflow: hidden;
+}
+
+
+
+.one_item {
+	position: relative;
+	top: 15%;
+	left: 25%;
+	border: 1px solid black;
+	background-color: lightgray;
+	width: 700px;
+	height: 500px;
+	padding: 20px;
+}
+
+.one_item img {
+	float: left;
+	margin-bottom: 200px;
+	margin-right: 20px;
+	max-height: 450px;
+}
+
+.one_item a {
+	margin-left: 20px;
+}
+
+.one_item_title {
+	font-size: 22pt;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.item_details {
+	margin-top: 0px;
+	margin-bottom: 10px;
+	font-size: 10pt;
+}
+
+.item_details span {
+	cursor: pointer;
+}
+
+.popup_background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,37 @@
+.public_data,
+.private_data {
+	display: inline-block;
+	width: 500px;
+	margin: 10px;
+	border: 1px solid black;
+	padding: 20px;
+}
+
+.top {
+	text-align: center;
+}
+
+.subtitle {
+	font-style: italic;
+}
+
+.instructions {
+	margin-bottom: 10px;
+}
+
+.public_data input[type='text'] {
+	width: 200px;
+	margin: 5px;
+}
+
+.article_text {
+	display: inline-block;
+	width: 40%;
+	text-align: left;
+	overflow: auto;
+}
+
+.item_title {
+	font-weight: 600;
+	margin-right: 3px;
+}
