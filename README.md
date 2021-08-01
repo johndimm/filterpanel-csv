@@ -7,7 +7,6 @@ This repo is about the React code that manages the filter panel on the left in t
 Requires:
 
 - node
-- postgres
 - react
 - nextjs
 
@@ -15,21 +14,8 @@ Steps:
 
 - clone the repo
 - npm install
-- source .env
 - npm run dev
 
-## Environment
-
-The .env file is included here because this is the default postgres setup for local access to a database running on the same machine as the React app.
-
-```
-$ cat .env
-export PGUSER=postgres
-export PGHOST=localhost
-export PGPASSWORD=postgres
-export PGDATABASE=movies
-export PGPORT=5432
-```
 
 ## Toy Example
 
@@ -42,9 +28,13 @@ A toy example makes it easier to see what's going on.
 
 ![](https://github.com/johndimm/imdb-filter-panel/blob/main/public/diagram.png?raw=true)
 
-The code uses document masks, which are simple arrays of boolean values, one for each "document" in the database (user, movie, geometric object).  An entry is True if that item should be displayed according to this filter.  This makes it easy for the filters to work independently, but still react to changes in the states of other filters.
+The code uses document masks, arrays of boolean values, one for each "document" in the database (user, movie, geometric object).  An entry is True if that item should be displayed according to this filter.  This makes it easy for the filters to work independently, but still react to changes in the states of other filters.
 
-Each feature filter manages a single column of the table.  When the user clicks on a checkbox, it calculates the output mask over all records in the original array.  
+Each feature filter manages a single column of the input table defined by the csv file.
+
+The idea is that each filter is master of its own domain.  No other filter know how it decides whether an item is in or out.  The communication with the outside world is through document masks.
+
+The filter receives an input global document mask from the panel, representing the current state of all filters taken together by intersection.  The filter applies its selection process to the items that passed the global filter to count the number of items in each category.  
 
 ```jsx
 // Generate the output mask.
@@ -59,8 +49,7 @@ Each feature filter manages a single column of the table.  When the user clicks 
 			}
 		})
 ```
-
-Using a callback, the output mask is sent up to the Filter Panel, where it is aggregated with the output masks from the other Feature Filters to update the list of input masks.  The input masks are sent down to the corresponding Feature Filter as a state parameter.
+When the user changes a checkbox selection, the filter sends its modified mask back up to the panel through a callback.  The panel recalculates the global mask over all records in the original array and React pushes the changed global document mask back down to the filters.
 
 ```jsx
                 outputMasks[sourceIdx] = outputMask
@@ -88,7 +77,7 @@ It is important to avoid causing an update to the filter that caused the change 
 - to avoid an infinite update loop and 
 - because we want the originating filter to remain in place.  
 
-Otherwise, the originating filter would be reduced to a single line.
+Otherwise, the originating filter would be reduced to a single line.  By ignoring the original filter during the update, we allow the user to switch from one category to another with a single click.
 
 ## The goals of this approach:
 
@@ -115,3 +104,5 @@ Otherwise, the originating filter would be reduced to a single line.
 - The document masks could be implemented as bitmasks, in which case the code to calculate the intersection of output masks is just a bitwise AND.  This would be a better approach, but I'm not sure it would produce a noticeable improvement on 5,000 items.
 
 - Handle larger datasets by using the database to create document masks and match them to the data.  I would expect this to be less snappy but still have good performance.
+
+- There is no attempt to deal with numeric ranges, and that is an important feature of e-commerce filter panels.
