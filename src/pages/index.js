@@ -111,46 +111,60 @@ function MainPage() {
 				</p>
 				<p>
 					There is no Filterpanel server. There are no accounts. There is no database. Nothing is
-					stored. It's just a script.
+					stored. It's just a script.  The entire CSV file is read on startup every time, either from local storage or the internet.  The second time is faster, because caching.
 				</p>
 				<p>
 					To share a local CSV file as rendered by Filterpanel, you need to make it available on the
-					internet using a url. One option is to upload it to data.world.
+					internet using a url. One option is to upload it to data.world.  Another is to send the file to your contacts and ask them to load it into Filterpanel.
 				</p>
 
 				<h2>Public Data Examples</h2>
 				<div>
+					<h3>Movies</h3>
 					<a href='/FetchCSV?url=https%3A%2F%2Fquery.data.world%2Fs%2Flt76nsufm5v76w2au4mmkksoh6wu6a'>
 						<img src='movies_thumbnail.png' />
 					</a>
 
 					<div>
-						<span className={styles.item_title}>
-							<a href='/FetchCSV?url=https%3A%2F%2Fquery.data.world%2Fs%2Flt76nsufm5v76w2au4mmkksoh6wu6a'>
-								Movies
-							</a>
-						</span>
-						uses data from IMDB and OMDB, curated by TheMitchWorksPro.  Find out more on{' '}
-						<a href='https://data.world/studentoflife/imdb-top-250-lists-and-5000-or-so-data-records'>
-							data.world
-						</a>
-						. Sample record:{' '}<SampleMovie />
+						<ul>
+						<li>CSV file from <a href='https://data.world/studentoflife/imdb-top-250-lists-and-5000-or-so-data-records'>data.world</a>
+						</li>
+						
+			            <li>
+						Uses extracts from IMDB and OMDB, curated by TheMitchWorksPro. 
+						</li>
+						</ul>
 					</div>
 				</div>
 
 				<div>
+					<h3>Olympic Medals</h3>
 					<a href='/FetchCSV?url=https%3A%2F%2Fquery.data.world%2Fs%2F45jwacgkggx55n2p3yox4qyiug7n6l'>
 						<img src='olympics_thumbnail.png' />
 					</a>
-					<div>
-						<span className={styles.item_title}>
-							<a href='/FetchCSV?url=https%3A%2F%2Fquery.data.world%2Fs%2F45jwacgkggx55n2p3yox4qyiug7n6l'>
-								Olympic Medals
-							</a>
-						</span>
-						uses data released by <a href='https://www.theguardian.com/sport/datablog/2012/jun/25/olympic-medal-winner-list-data#data'>The Guardian</a>, and hosted on <a href='https://www.kaggle.com/the-guardian/olympic-games'>Kaggle</a> and many other sites, covering Olympic medals up to 2014.  Sample record: <SampleOlympic />
-					</div>
+					<ul>
+						<li>CSV file from <a href='https://data.world/johndimm/olympic-medals-1896-to-2014-in-detail'>data.world</a></li>
+						<li>uses data released by <a href='https://www.theguardian.com/sport/datablog/2012/jun/25/olympic-medal-winner-list-data#data'>The Guardian</a></li>
+						
+						 <li>hosted on <a href='https://www.kaggle.com/the-guardian/olympic-games'>Kaggle</a> and many other sites</li>
+						 <li>
+						 covers Olympic medals up to 2014
+							 </li>
+					</ul>
 				</div>
+			<h2>Sample records</h2>
+			<h3>Movie</h3>
+			<SampleMovie />
+			<h3>Olympic Medal</h3>
+			<SampleOlympic />
+
+
+			<h2 >Github</h2>
+			<div>
+				Filterpanel: <a href='https://github.com/johndimm/filterpanel'>https://github.com/johndimm/filterpanel</a> 
+			<br />
+			    Filterpanel-csv: <a href='https://github.com/johndimm/filterpanel-csv'>https://github.com/johndimm/filterpanel-csv</a>
+			</div>
 			</div>
 		</div>
 	)

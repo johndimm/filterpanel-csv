@@ -1,2 +1,2 @@
-npm install
-npm run dev
+yarn
+yarn run dev
