@@ -1,7 +1,7 @@
 .public_data,
 .private_data {
 	display: inline-block;
-	width: 500px;
+	width: 400px;
 	margin: 10px;
 	border: 1px solid black;
 	padding: 20px;
@@ -29,4 +29,9 @@
 	width: 40%;
 	text-align: left;
 	overflow: auto;
+}
+
+.github div {
+	margin-top: 10px;
+	font-size: 30pt;
 }
