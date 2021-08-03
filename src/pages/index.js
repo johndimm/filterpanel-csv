@@ -167,7 +167,7 @@ const GitHub = () => {
 			<h3>filterpanel</h3>
             <a href='https://github.com/johndimm/filterpanel'>https://github.com/johndimm/filterpanel</a>
 			<div style={{marginTop: "10px"}}>
-				The node module exposes the Filterpanel component.  It takes a JSON array as input.
+				The npm package exposes the Filterpanel component.  It takes a JSON array as input.
 			</div>
 			<br />
 			<h3>filterpanel-example</h3>
