@@ -212,8 +212,10 @@ function MainPage() {
 				automatically generate a filter panel user interface using only a CSV file
 			</div>
 
+            <div style={{clear:'both'}}>
             <GetLocalFile />
 			<GetNetworkFile />
+			</div>
 
 			<div className={styles.article_text}>
 
