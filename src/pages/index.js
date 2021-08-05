@@ -177,7 +177,7 @@ const Ecommerce = () => {
 			<img src='Walmart.png'></img>
 			<img src='Target.png'></img>
 			<img src='Costco.png'></img>
-			<h2>How does you use it?</h2>
+			<h2>How do you use it?</h2>
 			The panels is a series of <i>feature filters</i>.  You check the values you want to include in the list of items on the right.  If a filter has nothing checked, it's as if everything is checked, all values are allowed.  You check multiple boxes in various filters until you have the features you care about.
 
             <h2>How does it work?</h2>
