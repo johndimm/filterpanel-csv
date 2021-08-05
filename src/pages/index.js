@@ -141,24 +141,7 @@ const GetLocalFile = () => {
 	)
 }
 
-const GetNetworkFile = () => {
-	return (
-		<div className={styles.private_data}>
-			<h2>Private Data</h2>
-			<div className={styles.instructions}>Open a CSV file on your computer.</div>
-			<form id='fileForm' encType='multipart/form-data' method='post'>
-				<input
-					id='files'
-					type='file'
-					onChange={(e) => {
-						const f = document.getElementById('fileForm')
-						uploadFile(f.elements['files'].files[0])
-					}}
-				/>
-			</form>
-		</div>
-	)
-}
+
 
 const GitHub = () => {
 	return (
@@ -187,15 +170,36 @@ const GitHub = () => {
 function MainPage() {
 	const [csvBuffer, setCsvBuffer] = useState([])
 
-	const uploadFile = (file) => {
-		const reader = new FileReader()
-		reader.onload = handleFileRead
-		reader.readAsText(file)
-	}
+	const GetNetworkFile = () => {
 
-	const handleFileRead = (event) => {
-		setCsvBuffer(event.target.result)
+		const handleFileRead = (event) => {
+			setCsvBuffer(event.target.result)
+		}
+	
+		const uploadFile = (file) => {
+			const reader = new FileReader()
+			reader.onload = handleFileRead
+			reader.readAsText(file)
+		}
+	
+		return (
+			<div className={styles.private_data}>
+				<h2>Private Data</h2>
+				<div className={styles.instructions}>Open a CSV file on your computer.</div>
+				<form id='fileForm' encType='multipart/form-data' method='post'>
+					<input
+						id='files'
+						type='file'
+						onChange={(e) => {
+							const f = document.getElementById('fileForm')
+							uploadFile(f.elements['files'].files[0])
+						}}
+					/>
+				</form>
+			</div>
+		)
 	}
+	
 
 	if (csvBuffer.length > 0) {
 		return <Main csvBuffer={csvBuffer} />
