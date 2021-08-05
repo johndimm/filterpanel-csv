@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+// import FilterPanel from './filterpanel'
 import FilterPanel from 'filterpanel'
 import styles from './Main.module.css'
 import Head from 'next/head'
@@ -139,13 +140,15 @@ const Main = ({ url, csvBuffer }) => {
 			</Head>
 
 			<div className={styles.app} onScroll={onScroll}>
-				<FilterPanel
-					originalArray={data}
-					callback={setFilteredData}
-					query={query}
-					filterFields={filterFields}
-					searchFields={searchFields}
-				/>
+				<div className={styles.filterPanelContainer}>
+					<FilterPanel
+						originalArray={data}
+						callback={setFilteredData}
+						query={query}
+						filterFields={filterFields}
+						searchFields={searchFields}
+					/>
+				</div>
 				<div>
 					{items}
 					{selectedItem}
