@@ -1,5 +1,7 @@
 import styles from './Rows.module.css'
 
+const MAX_COLUMNS = 50
+
 const Row = ({ val2, idx2, counts }) => {
 	const columns = Object.keys(val2)
 		.sort((a, b) => counts[b] - counts[a])
@@ -36,7 +38,7 @@ const Rows = ({ filteredData, counts, start, end }) => {
 			? []
 			: Object.keys(filteredData[0])
 					.sort((a, b) => counts[b] - counts[a])
-					.filter((val, idx) => idx < 12)
+					.filter((val, idx) => idx < MAX_COLUMNS)
 					.map((fieldName, idx) => <th key={idx}>{fieldName}</th>)
 
 	return (
