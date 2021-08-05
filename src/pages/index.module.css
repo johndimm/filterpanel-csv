@@ -26,7 +26,11 @@
 
 .article_text {
 	display: inline-block;
-	width: 40%;
+	width: 65%;
+	margin:20px;
+	padding:40px;
+	border: 1px solid lightgray;
+	border-radius: 5%;
 	text-align: left;
 	overflow: auto;
 }
@@ -34,4 +38,10 @@
 .github div {
 	margin-top: 10px;
 	font-size: 30pt;
+}
+
+.ecommerce img {
+	width: 45%;
+	margin: 10px;
+	border: 1px solid black;
 }

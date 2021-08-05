@@ -37,7 +37,7 @@ tomatourl      | http://www.rottentomatoes.com/m/shawshank_redemption/`}
 }
 
 const SampleOlympic = () => {
-return <pre>
+return <div style={{fontSize:'7.4pt'}}><pre>
 	{`
 +--------+------+--------+----------+------------+-----------------+--------------+--------+----------------+-------+---------------+
 | Season | Year | City   | Sport    | Discipline | Athlete         | Country_code | Gender | Event          | Medal | Country       |
@@ -46,6 +46,7 @@ return <pre>
 +--------+------+--------+----------+------------+-----------------+--------------+--------+----------------+-------+---------------+	
 `}
 </pre>
+</div>
 }
 
 const Movies = () => {
@@ -161,8 +162,27 @@ const GitHub = () => {
 			<h3>filterpanel-csv</h3>
             <a href='https://github.com/johndimm/filterpanel-csv'>https://github.com/johndimm/filterpanel-csv</a>
 			<div style={{marginTop: "10px"}}>
-				This app takes input from CSV files, either from the local system or the internet.  It scans and analyzes the CSV and applies rules to layout the filterpanel.
+				This app takes input from CSV files, either from the local system or the internet.  It scans and analyzes the CSV and applies rules to lay out the filterpanel.
 			</div>
+		</div>
+	)
+}
+
+const Ecommerce = () => {
+	return (
+		<div className={styles.ecommerce} >
+		   <h2 >What is a filter panel?</h2>
+		   Filterpanels are used in ecommerce to deal with the problem of vague queries that produce too much data.  The user needs a way to wade through the thousands of items that match the query "tv".  The filter panel appears on the left side of the page after a query.  Check the boxes to reduce the list.  
+			<img src='Amazon.png'></img>
+			<img src='Walmart.png'></img>
+			<img src='Target.png'></img>
+			<img src='Costco.png'></img>
+			<h2>How does you use it?</h2>
+			The panels is a series of <i>feature filters</i>.  You check the values you want to include in the list of items on the right.  If a filter has nothing checked, it's as if everything is checked, all values are allowed.  You check multiple boxes in various filters until you have the features you care about.
+
+            <h2>How does it work?</h2>
+			<p>The standard implementation reacts to a click by generating a new page of data in the database running on the server, then download and render it on the client.  This implemention downloads the data to the client at the outset, so it responds to clicks locally and immediately.</p>
+			<p>The algorithm uses document masks to represent the actions of filters. The filters have no knowledge of each other, and the container app blindly aggregates and disseminates the results of the filters.  The technique makes high demands on the network, the local machine, and the browser, compared to the standard solution.  But compared to games or video, not so much.</p>
 		</div>
 	)
 }
@@ -224,9 +244,9 @@ function MainPage() {
 			<div className={styles.article_text}>
 
 				<h2>Examples</h2>
-				<Shapes />
 				<Movies />
 				<OlympicMedals />
+				<Shapes />
 
 				<h2>Sample records</h2>
 				<h3>Movie</h3>
@@ -236,6 +256,8 @@ function MainPage() {
 
 				<PublicPrivate />
 				<GitHub />
+
+				<Ecommerce />
 
 
 			</div>
