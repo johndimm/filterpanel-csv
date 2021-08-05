@@ -8,6 +8,7 @@ const scanCSVData = (jsonArray) => {
 		let distinct = {}
 
 		let longest = ''
+		let shortest = ' '.repeat(100)
 		let spaces = 0
 		let commas = 0
 		let isUrl = false
@@ -33,6 +34,7 @@ const scanCSVData = (jsonArray) => {
 				else distinct[val] = 1
 
 				if (val.length > longest.length) longest = val
+				if (val.length > 0 && val.length < shortest.length) shortest = val
 
 				const s = val.split(' ').length - 1
 
@@ -55,6 +57,7 @@ const scanCSVData = (jsonArray) => {
 
 		fieldStats[fieldName] = {
 			longest: longest,
+			shortest: shortest,
 			count: Object.keys(distinct).length,
 			// distinct: distinct,
 			avgSpaces: spaces / jsonArray.length,
@@ -117,7 +120,10 @@ const pickFields = (jsonArray, fieldStats) => {
 		.filter(
 			(a) =>
 				//	fieldStats[a].count / jsonArray.length < 0.5 &&
-				fieldStats[a].count > 1 && !fieldStats[a].isObject
+				fieldStats[a].count > 1 
+				&& !fieldStats[a].isObject
+				&& fieldStats[a].longest.length != fieldStats[a].shortest.length 
+				&& fieldStats[a].longest.length < 1000
 		)
 		.forEach((val) => {
 			if (fieldStats[val].count > 1) {
