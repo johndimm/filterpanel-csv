@@ -120,10 +120,7 @@ const PublicPrivate = () => {
 				There is no Filterpanel server. There are no accounts. There is no database. Nothing is
 				stored. It's just a script.  The entire CSV file is read on startup every time, either from local storage or the internet.  The second time is faster, because caching.
 			</p>
-			<p>
-				To share a local CSV file as rendered by Filterpanel, you need to make it available on the
-				internet using a url. One option is to upload it to data.world.  Another is to send the file to your contacts and ask them to load it into Filterpanel.
-			</p>
+
 		</div>
 	)
 }
@@ -172,17 +169,52 @@ const Ecommerce = () => {
 	return (
 		<div className={styles.ecommerce} >
 		   <h2 >What is a filter panel?</h2>
+		   <p>
 		   Filterpanels are used in ecommerce to deal with the problem of vague queries that produce too much data.  The user needs a way to wade through the thousands of items that match the query "tv".  The filter panel appears on the left side of the page after a query.  Check the boxes to reduce the list.  
+		   </p>
 			<img src='Amazon.png'></img>
 			<img src='Walmart.png'></img>
 			<img src='Target.png'></img>
 			<img src='Costco.png'></img>
 			<h2>How do you use it?</h2>
-			The panels is a series of <i>feature filters</i>.  You check the values you want to include in the list of items on the right.  If a filter has nothing checked, it's as if everything is checked, all values are allowed.  You check multiple boxes in various filters until you have the features you care about.
+			The panels is a series of <i>feature filters</i>.  You check the values you want to include in the list of items on the right.  If a filter has nothing checked, it's as if everything is checked and all values are allowed.  You check multiple boxes in various filters until the list shows items with the features you care about.
 
             <h2>How does it work?</h2>
 			<p>The standard implementation reacts to a click by generating a new page of data in the database running on the server, then download and render it on the client.  This implemention downloads the data to the client at the outset, so it responds to clicks locally and immediately.</p>
+
 			<p>The algorithm uses document masks to represent the actions of filters. The filters have no knowledge of each other, and the container app blindly aggregates and disseminates the results of the filters.  The technique makes high demands on the network, the local machine, and the browser, compared to the standard solution.  But compared to games or video, not so much.</p>
+
+			<h2>What kind of data works well?</h2>
+			<p>
+				See the examples, Movies in particular.
+				<ul>
+					<li>Each row has value on its own.  Rows do not need aggregation to become interesting.</li>
+					<li>Many columns are <i>categorical</i>:  they have a small number of repeating values.  It's even better if the values are text. </li>
+					<li>The categorical fields are shown in increasing cardinality.  So rated and genre on Movies show up before country and language.</li>
+					<li>The technique works well on rows up to the 5,000 to 10,000 range.  For larger datasets, it is best to feed the filterpanel with the results of a query.</li>
+				</ul>
+			</p>
+
+			<h2>Analysts, Product Designers, Casual Readers</h2>
+			<p>
+			The best case for this UI may be product catalogs, but lists of anything with known categorical attributes can benefit. 
+
+			</p>
+
+			<p>First, try it out on a local CSV file.  If the results are promising, you may want to edit your spreadsheet to remove boring columns or make other changes to improve the filterpanel display. 
+			</p>
+
+			<p>
+				If it looks good and you want to share a local CSV file as rendered by Filterpanel, you need to make it available on the
+				internet or intranet using a url. One option for public data is to upload it to <a href='https://data.world/'>data.world</a>.  Another is to send the file to your contacts and ask them to load it into Filterpanel themselves.
+			</p>
+
+			<p>It works that way because I want to let people try this on their own data, and publish the results, but I don't want to spend the time to manage user accounts on a website and store user data.  There is no website.  This is purely a free demo but you have to Bring Your Own Data. </p>
+
+			<h2>Developers</h2>
+			<p>
+				The npm package uses React, so if you have some boring grids and are using React, you are in luck my friend!  See the filterpanel-example app for a simple integration using JSON arrays, in React/Nextjs.  
+			</p>
 		</div>
 	)
 }
@@ -233,7 +265,7 @@ function MainPage() {
 			<h1>Filterpanel</h1>
 
 			<div className={styles.subtitle}>
-				automatically generate a filter panel user interface using only a CSV file
+				automatically generates a filter panel using only a CSV file
 			</div>
 
             <div style={{clear:'both'}}>
