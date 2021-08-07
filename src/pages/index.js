@@ -184,7 +184,7 @@ const Ecommerce = () => {
 
 			<p>The algorithm uses document masks to represent the actions of filters. The filters have no knowledge of each other, and the container app blindly aggregates and disseminates the results of the filters.  The technique makes high demands on the network, the local machine, and the browser, compared to the standard solution.  But compared to games or video, not so much.</p>
 
-			<h2>What kind of data works well?</h2>
+			<h2>What kinds of data work well?</h2>
 			<p>
 				See the examples, Movies in particular.
 				<ul>
