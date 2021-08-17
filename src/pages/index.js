@@ -185,35 +185,125 @@ const Ecommerce = () => {
 			<p>The algorithm uses document masks to represent the actions of filters. The filters have no knowledge of each other, and the container app blindly aggregates and disseminates the results of the filters.  The technique makes high demands on the network, the local machine, and the browser, compared to the standard solution.  But compared to games or video, not so much.</p>
 
 			<h2>What kinds of data work well?</h2>
-			<p>
-				See the examples, Movies in particular.
-				<ul>
-					<li>Each row has value on its own.  Rows do not need aggregation to become interesting.</li>
-					<li>Many columns are <i>categorical</i>:  they have a small number of repeating values.  It's even better if the values are text. </li>
-					<li>The categorical fields are shown in increasing cardinality.  So rated and genre on Movies show up before country and language.</li>
-					<li>The technique works well on rows up to the 5,000 to 10,000 range.  For larger datasets, it is best to feed the filterpanel with the results of a query.</li>
-				</ul>
-			</p>
+			See the examples, Movies in particular.
+			<ul>
+				<li>Each row has value on its own.  Rows do not need aggregation to become interesting.</li>
+				<li>Many columns are <i>categorical</i>:  they have a small number of repeating values.  It's even better if the values are text. </li>
+				<li>The categorical fields are shown in increasing cardinality.  So rated and genre on Movies show up before country and language.</li>
+				<li>The technique works well on rows up to the 5,000 to 10,000 range.  For larger datasets, it is best to feed the filterpanel with the results of a query.</li>
+			</ul>
 
 			<h2>Analysts, Product Designers, Casual Readers</h2>
 			<p>
 			The best case for this UI may be product catalogs, but lists of anything with known categorical attributes can benefit. 
-
 			</p>
 
 			<p>First, try it out on a local CSV file.  If the results are promising, you may want to edit your spreadsheet to remove boring columns or make other changes to improve the filterpanel display. 
 			</p>
 
+            <h3>Hosting your data on data.world</h3>
 			<p>
 				If it looks good and you want to share a local CSV file as rendered by Filterpanel, you need to make it available on the
-				internet or intranet using a url. One option for public data is to upload it to <a href='https://data.world/'>data.world</a>.  Another is to send the file to your contacts and ask them to load it into Filterpanel themselves.
+				internet or intranet using a url. One option for public data is to upload it to <a href='https://data.world/'>data.world</a>.    See the Movies and Olympics examples above for details.
 			</p>
 
-			<p>It works that way because I want to let people try this on their own data, and publish the results, but I don't want to spend the time to manage user accounts on a website and store user data.  There is no website.  This is purely a free demo but you have to Bring Your Own Data. </p>
+            <h3>Hosting your data on Google Sheets</h3>
+			<p>
+			Here is a google sheet that is publicly available:
+
+<blockquote>
+
+			  <a href="https://docs.google.com/spreadsheets/d/1obx8JHesu-FGVUKsm6cX-Use9V8PZx-yqJmJHu095DE/edit#gid=0">https://docs.google.com/spreadsheets/d/1obx8JHesu-FGVUKsm6cX-Use9V8PZx-yqJmJHu095DE/edit#gid=0</a>
+</blockquote>
+
+			To make it available as CSV, you need to edit the url like this:
+
+<blockquote>
+			<a href="https://docs.google.com/spreadsheets/d/1obx8JHesu-FGVUKsm6cX-Use9V8PZx-yqJmJHu095DE/export?format=csv">
+			
+			https://docs.google.com/spreadsheets/d/1obx8JHesu-FGVUKsm6cX-Use9V8PZx-yqJmJHu095DE/export?format=csv
+			</a>
+
+</blockquote>
+
+            That's the url you load into filterpanel, resulting in this final url.  It shows the Google Sheets data as it is rendered by the filterpanel UI.
+
+<blockquote>
+	<a href="https://filterpanel-csv.vercel.app/FetchCSV?url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1obx8JHesu-FGVUKsm6cX-Use9V8PZx-yqJmJHu095DE%2Fexport%3Fformat%3Dcsv">
+https://filterpanel-csv.vercel.app/FetchCSV?url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1obx8JHesu-FGVUKsm6cX-Use9V8PZx-yqJmJHu095DE%2Fexport%3Fformat%3Dcsv
+</a>
+
+</blockquote>
+			</p>
+
+			<h3>Using data from OpenML</h3>
+
+			OpenML has data:
+
+<blockquote>
+  <a href="https://www.openml.org/s/88/data">
+  https://www.openml.org/s/88/data   
+  </a>
+</blockquote>
+
+            Let's try cars.  Right-click on the CSV link at the top right and select Copy link.  
+
+<blockquote>
+  https://www.openml.org/data/get_csv/4965299/cars1.arff  
+</blockquote>
+
+            Paste that into filterpanel.  
+			
+<blockquote>
+	<a href="https://filterpanel-csv.vercel.app/FetchCSV?url=https%3A%2F%2Fwww.openml.org%2Fdata%2Fget_csv%2F4965299%2Fcars1.arff+">https://filterpanel-csv.vercel.app/FetchCSV?url=https%3A%2F%2Fwww.openml.org%2Fdata%2Fget_csv%2F4965299%2Fcars1.arff+</a>
+</blockquote>
+			
+			Unfortunately, filterpanel hangs, and the javascript console says:
+
+<blockquote>
+Access to fetch at 'https://www.openml.org/data/get_csv/4965299/cars1.arff' from origin 'https://filterpanel-csv.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+</blockquote>
+
+            The solution is a small app that <a href="https://powerful-reef-24520.herokuapp.com/">
+			bypasses cors: https://powerful-reef-24520.herokuapp.com/
+			</a>
+<p>
+	Using the proxy, the final url for filterpanel is this:
+</p>
+
+<blockquote>
+
+
+			<a href="http://localhost:3001/FetchCSV?url=https%3A%2F%2Fpowerful-reef-24520.herokuapp.com%2Fhttps%3A%2F%2Fwww.openml.org%2Fdata%2Fget_csv%2F4965299%2Fcars1.arff">
+			http://localhost:3001/FetchCSV?url=https%3A%2F%2Fpowerful-reef-24520.herokuapp.com%2Fhttps%3A%2F%2Fwww.openml.org%2Fdata%2Fget_csv%2F4965299%2Fcars1.arff</a>
+
+			</blockquote>
+
+
+            <h2>Bring Your Own Data</h2>
+			<p>The goal was to do two things:
+				<ul>
+					<li>provide a data visualization tool you can use on your own local data</li>
+					<li>allow you to post a url that shows your data in the same visualization tool</li>
+				</ul>
+
+				<p>
+				These requirement seem to call for user accounts and online data storage, with the associated security issues.  
+				</p>
+
+				<p>
+					We avoid it all by using either a local file as source, in which case the file is read locally and processed locally in javascript, or an online source in the form of a url that downloads a CSV file.
+				</p>
+
+		 That's why you don't have to authenticate yourself to use filterpanel.  There is no website.  This is purely a free script that runs on your computer.  The catch is that you have to Bring Your Own Data.</p>
 
 			<h2>Developers</h2>
 			<p>
 				The npm package uses React, so if you have some boring grids and are using React, you are in luck my friend!  See the filterpanel-example app for a simple integration using JSON arrays, in React/Nextjs.  
+			</p>
+
+			<p style={{'textAlign':'center'}}>
+				Copyright (c) <a href="http://www.johndimm.com">John Dimm</a> 2021
 			</p>
 		</div>
 	)

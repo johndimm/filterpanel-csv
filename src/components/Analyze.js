@@ -43,7 +43,7 @@ const scanCSVData = (jsonArray) => {
 				}
 
 				if (!isImage && isUrl && s === 0) {
-					const re = /\.(jpg|jpeg|JPG|JPEG)["']?$/
+					const re = /\.(jpg|jpeg|JPG|JPEG|png|PNG)["']?$/
 					isImage = val.match(re) != null
 				}
 
