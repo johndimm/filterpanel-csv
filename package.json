@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start -p 3001"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "@babel/core": "^7.14.8",
     "csv-string": "^4.0.1",
