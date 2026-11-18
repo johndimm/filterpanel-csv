@@ -1,4 +1,4 @@
-const scanCSVData = (jsonArray) => {
+const scanCSVData = (jsonArray, imageBaseUrl) => {
 	const fields = Object.keys(jsonArray[0])
 	let fieldStats = {}
 	let posterField = ''
@@ -42,7 +42,7 @@ const scanCSVData = (jsonArray) => {
 					if (val.indexOf('http') != -1) isUrl = true
 				}
 
-				if (!isImage && isUrl && s === 0) {
+				if (!isImage && s === 0) {
 					const re = /\.(jpg|jpeg|JPG|JPEG|png|PNG)["']?$/
 					isImage = val.match(re) != null
 				}
@@ -98,7 +98,8 @@ const scanCSVData = (jsonArray) => {
 	fieldStats['cardFields'] = {
 		poster: posterField,
 		title: titleField,
-		plot: plotField
+		plot: plotField,
+		imageBaseUrl: imageBaseUrl || ''
 	}
 
 	// console.log('scan', fieldStats)
@@ -149,7 +150,8 @@ const pickFields = (jsonArray, fieldStats) => {
 	let cardFields = {
 		poster: fieldStats.cardFields['poster'],
 		title: fieldStats.cardFields['title'],
-		plot: fieldStats.cardFields['plot']
+		plot: fieldStats.cardFields['plot'],
+		imageBaseUrl: fieldStats.cardFields['imageBaseUrl']
 	}
 
 	// console.log('ff', ff)

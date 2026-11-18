@@ -11,7 +11,7 @@ import Rows from './Rows'
 const ITEMS_PER_PAGE = 30
 
 
-const Main = ({ url, csvBuffer }) => {
+const Main = ({ url, csvBuffer, imageBaseUrl }) => {
 	const [data, setData] = useState([])
 	const [filteredData, setFilteredData] = useState([])
 	const [oneItem, setOneItem] = useState(null)
@@ -39,7 +39,7 @@ const Main = ({ url, csvBuffer }) => {
 				return jsonLine
 			})
 
-		const fieldStats = scanCSVData(jsonArray)
+		const fieldStats = scanCSVData(jsonArray, imageBaseUrl)
 		const fields = pickFields(jsonArray, fieldStats)
 
 		setCardFields(fields.cardFields)

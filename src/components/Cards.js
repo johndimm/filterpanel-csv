@@ -2,11 +2,19 @@ import { useState } from 'react'
 import styles from './Cards.module.css'
 import { allKeys } from './Analyze'
 
+const resolvePoster = (src, imageBaseUrl) => {
+	if (!src) return src
+	if (src.match(/^https?:\/\//)) return src
+	if (imageBaseUrl) return imageBaseUrl + src
+	return src
+}
+
 export const OneItem = ({ item, setOneItem, setQuery, fieldStats }) => {
 	const detail = allKeys(item, fieldStats, setQuery)
 
 	const posterField = fieldStats.cardFields.poster
-	const poster = item[posterField]
+	const imageBaseUrl = fieldStats.cardFields.imageBaseUrl
+	const poster = resolvePoster(item[posterField], imageBaseUrl)
 
 	return (
 		<div className={styles.popup_background} onClick={(e) => setOneItem(null)}>
@@ -48,7 +56,8 @@ const Card = ({ item, onClick, cardFields, fieldStats, setQuery }) => {
 	const [badImage, setBadImage] = useState(false)
 	const title = item[cardFields['title']]
 	const plot = item[cardFields['plot']]
-	const poster = item[cardFields['poster']]
+	const imageBaseUrl = fieldStats.cardFields.imageBaseUrl
+	const poster = resolvePoster(item[cardFields['poster']], imageBaseUrl)
 
 	const detail = allKeys(item, fieldStats, setQuery)
 

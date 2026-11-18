@@ -1,0 +1,23 @@
+For a data annotation project, I want to use three of my repos.  I do not want to start working on it yet, but I want you to read the code, try running it, and tell me if this is a good canidate.  
+
+It is running here, and there is a lot of text to read:
+
+  https://filterpanel-csv.vercel.app/
+
+The three repos:
+
+- filterpanel -- an npm package that accepts a JSON buffer and generates an HTML page 
+
+- filterpanel-example -- a trivial example that uses filterpanel
+
+- filterpanel-csv -- accepts a CSV file and generates a JSON buffer for the filterpanel package.
+
+Issues:
+
+- a sorting feature is needed
+
+- it should be extended to work with SQL data, where a SQL query pulls the data from the server each time the user makes a selection.
+
+- the csv analysis attempts to identify numeric fields and categorical fields, as well as image links, by scanning the data.  This code works on the given examples but may not handle other csv files.
+
+
